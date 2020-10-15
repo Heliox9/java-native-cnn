@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'lab.Controller'
+}
+
+version '2.0-rc1'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+
+    //Logging
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.9'
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.0.9'
+
+    //Matrix
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
+
+    // https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core
+    compile group: 'org.deeplearning4j', name: 'deeplearning4j-core', version: '0.9.1'
+    // backend for lab.cnn.dl4j
+    compile group: 'org.nd4j', name: 'nd4j-native-platform', version: '0.9.1'
+    compile group: 'org.nd4j', name: 'nd4j-api', version: '0.9.1'
+}
+
+run {
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'lab.Controller'
+        )
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+clean {
+    delete 'log/'
+}
