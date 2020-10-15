@@ -1,6 +1,10 @@
 # CNN_Lab (2.0-rc1)
 
 This is a gradle project which builds and manages two types of neural network implementations.
+It was created as part of a university project with the aim of building a more understandable CNN implementation for future students to use.
+The custom implementation is written purely in java and only uses the apache commons library to implement activation functions.
+
+Execution starts a CLI which can configure, train and use both CNN implementations.
 
 ## Core Tasks
 * run: executes the project
